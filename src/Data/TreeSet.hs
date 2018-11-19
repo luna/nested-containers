@@ -7,8 +7,6 @@ module Data.TreeSet where
 
 import Prologue hiding (null)
 
-import           Data.Map (Map)
-import qualified Data.Map as Map
 import qualified GHC.Exts as GHC
 import qualified Prelude  as P
 
