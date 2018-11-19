@@ -1,0 +1,43 @@
+resolver: lts-12.16
+name: luna-nested-containers
+
+package-indices:
+    - name:            standard-hackage
+      download-prefix: https://hackage.haskell.org/package/
+      http:            https://hackage.haskell.org/01-index.tar.gz
+
+ghc-options:
+    $locals:
+        -O1
+        -Wall
+        -Wno-name-shadowing
+        -fexcess-precision
+        -fexpose-all-unfoldings
+        -flate-dmd-anal
+        -fmax-worker-args=1000
+        -fsimpl-tick-factor=400
+        -fspec-constr-keen
+        -fspecialise-aggressively
+        -fstatic-argument-transformation
+        -funbox-strict-fields
+        -threaded
+    $everything:
+        -fconstraint-solver-iterations=100
+
+extra-deps:
+  - git: 'git@github.com:luna/lens-utils.git'
+    commit: 0d409c96cc6f4a7c3ea0e907311f091aea02a2b2
+  - git: 'git@github.com:luna/prologue.git'
+    commit: e5b510f87a8a3fb137c8b340ebc8bb89213b489f
+  - git: 'git@github.com:luna/container.git'
+    commit: 3905932052043aae4ae2f73a8f587e34cd36ae78
+  - git: 'git@github.com:luna/convert.git'
+    commit: 7066b94bd27cabf0aaec5e19b56cb5433003db0f
+  - git: 'git@github.com:luna/functor-utils.git'
+    commit: 065d7007badfd84b7cefd1878303f84fdec2a437
+  - git: 'git@github.com:luna/monoid'
+    commit: ef769ce5f6d027d3ea7d7dd230fe72e47ac9a018
+  - git: 'git@github.com:luna/impossible.git'
+    commit: ea20a1955fd91487d17ae1e7a4d87c8a30e96402
+  - git: 'git@github.com:luna/typelevel.git'
+    commit: 942486184671610ea45fe0b971086c3885f8f40c
