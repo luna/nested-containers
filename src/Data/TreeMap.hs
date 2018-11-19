@@ -279,7 +279,7 @@ reduceBranches         :: (IsValue t)          =>      (k -> t a -> [c] ->   c) 
 reduceBranchesM        :: (IsValue t, Monad m) =>      (k -> t a -> [c] -> m c)                                -> TreeMap t k a -> m [c]
 foldReduceSubBranchesM :: (IsValue t, Monad m) => (b -> k -> t a -> [c] -> m c) -> (b -> k -> t a -> m b) -> b -> k -> TreeBranch t k a -> m c
 foldBranches           = \  f b -> runIdentity . foldBranchesM (pure .:. f) b
-foldBranchesM          = \  f b -> fmap concat . foldReduceBranchesM (\b _ ma subs -> pure $ concat subs & if valExists ma then (b:) else id) f b
+foldBranchesM          = \  f b -> fmap concat . foldReduceBranchesM (\b' _ ma subs -> pure $ concat subs & if valExists ma then (b':) else id) f b
 foldBranchesM_         =           void .:. foldBranchesM
 foldReduceBranches     = \h f b -> runIdentity . foldReduceBranchesM (pure .:: h) (pure .:. f) b
 foldReduceBranchesM    = \h f b -> mapM (uncurry $ foldReduceSubBranchesM h f b) . assocs
@@ -295,8 +295,8 @@ foldReduceSubBranchesM = \h f b k (TreeBranch v s) -> do
 
 lookup :: (Ord k, IsValue t) => NonEmpty k -> TreeMap t k a -> Maybe a
 lookup (k :| ks) = join . fmap (lookupBranch ks) . view (branches . at k) where
-    lookupBranch = \case []     -> checkVal . view value
-                         (k:ks) -> join . fmap (lookupBranch ks) . view (at k)
+    lookupBranch = \case []       -> checkVal . view value
+                         (k':ks') -> join . fmap (lookupBranch ks') . view (at k')
 {-# INLINE lookup #-}
 
 focus :: (IsValue t, Ord k) => NonEmpty k -> Traversal' (TreeMap t k a) a

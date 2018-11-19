@@ -1,4 +1,4 @@
-name        : luna-nested-containers
+name        : nested-containers
 version     : 1.0.0
 category    : Data
 license     : Apache-2.0
@@ -24,6 +24,7 @@ library:
 default-extensions:
     - AllowAmbiguousTypes
     - ApplicativeDo
+    - Arrows
     - BangPatterns
     - BinaryLiterals
     - ConstraintKinds
@@ -45,6 +46,7 @@ default-extensions:
     - LambdaCase
     - LiberalTypeSynonyms
     - MonadComprehensions
+    - MonadFailDesugaring
     - MultiWayIf
     - NamedWildCards
     - NegativeLiterals
@@ -53,15 +55,12 @@ default-extensions:
     - OverloadedLabels
     - OverloadedStrings
     - PackageImports
-    - PatternSynonyms
     - QuasiQuotes
     - RankNTypes
     - RecursiveDo
     - RelaxedPolyRec
     - ScopedTypeVariables
     - StandaloneDeriving
-    - Strict
-    - StrictData
     - TemplateHaskell
     - TupleSections
     - TypeApplications
@@ -70,4 +69,3 @@ default-extensions:
     - TypeOperators
     - UnicodeSyntax
     - ViewPatterns
-
